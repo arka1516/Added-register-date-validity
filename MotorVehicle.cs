@@ -18,7 +18,7 @@ namespace DMV_GUI
         protected char fieldSep = '|';
         protected string valid(DateTime dateOfProduction,DateTime dateOfRegistration)
         {
-
+//I added this to check if registration date was valid
             if (dateOfRegistration > DateTime.Today) { return "Not registered yet"; }
                 else if (dateOfRegistration.AddYears(1) < DateTime.Today) { return "Not valid"; }
                 else { return "Valid"; }
@@ -104,6 +104,7 @@ namespace DMV_GUI
             : base(register, VIN, make, model, noOfWheels, noOfSeats, dateOfProduction, color, AC, airbags)
         {
             //new Car(register, valid, VIN, make, model, noOfSeats, noOfWheels, dateOfProduction, color, AC, airbags);
+            //i commented this upper part as I read that you cant call constructor inside other constructor like that
             this.licence = licence;
         }
 
