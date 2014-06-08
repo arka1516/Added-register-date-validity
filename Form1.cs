@@ -113,8 +113,13 @@ namespace DMV_GUI
         {
             rtLog.Clear();
             MotorVehicle mv = null;
-            if (dateTimePicker1.Value < datePicker.Value) { errorbox.AppendText("\n Date of car production cant be after date of its registration"); }//added to check the dates
-            else if (String.IsNullOrEmpty(tbVIN.Text) || String.IsNullOrEmpty(tbModel.Text) || String.IsNullOrEmpty(customTb01.Text))//I have added this part cause previously there was nothing to check if those textboxes were empty
+            if (dateTimePicker1.Value < datePicker.Value) 
+            { errorbox.AppendText("\n Date of car production cant be after date of its registration"); }
+            //added to check the dates
+            else if (String.IsNullOrEmpty(tbVIN.Text) ||
+            String.IsNullOrEmpty(tbModel.Text) || 
+            String.IsNullOrEmpty(customTb01.Text))
+            //I have added this part cause previously there was nothing to check if those textboxes were empty
             {
                 errorbox.Clear();
                 errorbox.AppendText("\n You didnt fill in all boxes.");
@@ -122,7 +127,8 @@ namespace DMV_GUI
             else if (rbTruck.Checked)
             {
                 double i;
-                if (!double.TryParse(customTb01.Text, out i)) { errorbox.AppendText("\n incorrect weight input"); }//I added this to check double input for weight so it doesnt throw exception
+                if (!double.TryParse(customTb01.Text, out i)) { errorbox.AppendText("\n incorrect weight input"); }
+                //I added this to check double input for weight so it doesnt throw exception
                 else{
                 mv = new Truck(dateTimePicker1.Value,tbVIN.Text, ComboBoxVehicleManufacturer.Text, tbModel.Text, (int)NoOfWheels.Value, (int)NoOfSeats.Value, datePicker.Value, Convert.ToDouble(customTb01.Text));
             }
@@ -134,7 +140,8 @@ namespace DMV_GUI
             else if (rbCar.Checked)
             {
                 int i;
-                if (String.IsNullOrEmpty(customTb02.Text) && !Int32.TryParse(customTb02.Text,out i)){errorbox.AppendText("1 box isnt filled correctly");}//I added so there isnt error if box isnt filled or if it contains incorrect input
+                if (String.IsNullOrEmpty(customTb02.Text) && !Int32.TryParse(customTb02.Text,out i)){errorbox.AppendText("1 box isnt filled correctly");}
+                //I added so there isnt error if box isnt filled or if it contains incorrect input
                 else{
                     mv = new Car(dateTimePicker1.Value, tbVIN.Text, ComboBoxVehicleManufacturer.Text, tbModel.Text, (int)NoOfWheels.Value, (int)NoOfSeats.Value, datePicker.Value, customTb01.Text, rbYes.Checked, Convert.ToInt32(customTb02.Text));
                 }
